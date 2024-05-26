@@ -1,0 +1,9 @@
+
+  .Main-container {
+    height: 100%;
+    width: 100%;
+    background-image: url('../../Assets/Image.png');
+    background-size: cover;
+    background-position: center;
+  }
+  

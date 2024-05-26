@@ -1,0 +1,7 @@
+.SongList-container {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    background-color: #A8A6FF;
+    border-left: 3px solid black;
+  }

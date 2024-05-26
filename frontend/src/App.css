@@ -1,19 +1,22 @@
-body {
-    margin: 0; /* Remove the default margin */
-}
-.wrapper{
-    box-sizing: border-box;
-    width: 100vw;
-    height: 100vh;
+/* App.css */
+
+.App-Wrapper {
+    /* border: 1px solid green; */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    /* border: 1px solid red; */
+    height: 100vh;
+    width: 100%;
 }
 
-.test{
-    height: 100px;
-    width: 100px;
-    background-color: red;
+.Main-App-Container{
+    height: 100%;
+    width: 65%;
+
 }
+
+.SongList-App-Container{
+    height: 100%;
+    width: 35%;
+}
+    
+  
+
