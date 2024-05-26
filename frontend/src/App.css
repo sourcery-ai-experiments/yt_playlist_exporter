@@ -1,0 +1,19 @@
+body {
+    margin: 0; /* Remove the default margin */
+}
+.wrapper{
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    /* border: 1px solid red; */
+}
+
+.test{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}
