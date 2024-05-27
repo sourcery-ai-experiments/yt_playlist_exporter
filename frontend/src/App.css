@@ -17,6 +17,12 @@
     height: 100%;
     width: 35%;
 }
-    
+
+.Footer-Container{
+    position: absolute;
+    bottom: 0;
+    height: 5%;
+    width: 65%;
+}    
   
 
