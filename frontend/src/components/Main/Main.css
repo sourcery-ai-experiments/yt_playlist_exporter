@@ -6,4 +6,30 @@
     background-size: cover;
     background-position: center;
   }
+
+  .Title{
+    display: flex;
+    height: 12%;
+    width: 100%;
+    align-items: center;
+  }
+
+  .Title span{
+    font-size: 3em;
+    font-weight: bold;
+    margin-left: 5%; ;
+  }
   
+  .PlaylistLink{
+    display: flex;
+    height: 10%;
+    align-items: center;
+  }
+
+  .PlaylistLink-InputBox{
+    margin-left: 5%;
+  }
+
+  .PlaylistLink-Btn{
+    margin-left: 3%;
+  }
