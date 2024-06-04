@@ -27,7 +27,6 @@ router.get('/:playlistId', async (req, res) => {
     } while (nextPageToken);
 
     res.json({ videoTitles });
-    console.log(videoTitles.length);
   } catch (err) {
     console.error('YouTube API error:', err);
     res.status(500).json({ error: 'Internal Server Error' });

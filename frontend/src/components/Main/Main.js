@@ -6,9 +6,8 @@ import InputBox from '../InputBox/InputBox'
 import RadioBtn from '../RadioBtn/RadioBtn'
 
 const Main = () => {
-  const { setIsPlaylistLinkSet, isPlaylistLinkSet, setIsPlaylistLinkValid } = useContext(PlaylistLinkStatusContext);
+  const { setIsPlaylistLinkSet, isPlaylistLinkSet, setIsPlaylistLinkValid, setPlaylistID, PlaylistID } = useContext(PlaylistLinkStatusContext);
   const [playlistLink, setPlaylistLink] = useState('');
-  const [playlistID, setPlaylistID] = useState('');
 
   //Send to Youtube API
   const handleBtnClick = () => {
@@ -35,8 +34,8 @@ const Main = () => {
   }, [isPlaylistLinkSet])
 
   useEffect(() => {
-    playlistID != "" ? console.log("Playlist ID is ", playlistID) : console.log("Playlist ID is null");
-  }, [playlistID])
+    PlaylistID !== "" ? console.log("Playlist ID is ", PlaylistID) : console.log("Playlist ID is null");
+  }, [PlaylistID])
 
 
   return (
