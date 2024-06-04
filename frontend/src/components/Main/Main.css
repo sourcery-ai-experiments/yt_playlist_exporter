@@ -33,3 +33,17 @@
   .PlaylistLink-Btn{
     margin-left: 3%;
   }
+
+  .RadioSection{
+    border: 1px solid red;
+    margin-left: 5%;
+    width: auto;
+    height: auto;
+  }
+
+  .Radio-Option{
+    display: flex;
+  }
+  .Radio-Option p{
+    margin: 0;
+  }

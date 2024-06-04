@@ -3,7 +3,7 @@ import './SongList.css'
 
 const SongList = () => {
   return (
-    <div className='SongList-container'>hi</div>
+    <div className='SongList-container'></div>
   )
 }
 
