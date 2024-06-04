@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react'
 import './Main.css'
 import { PlaylistLinkStatusContext } from '../../Context/PlaylistLinkStatus'
+import { SongsContext } from '../../Context/Songs'
 import Btn from '../Btn/Btn'
+import PlaylistCard from '../PlaylistCard/PlaylistCard'
 import InputBox from '../InputBox/InputBox'
 import RadioBtn from '../RadioBtn/RadioBtn'
 
 const Main = () => {
   const { setIsPlaylistLinkSet, isPlaylistLinkSet, setIsPlaylistLinkValid, setPlaylistID, PlaylistID } = useContext(PlaylistLinkStatusContext);
   const [playlistLink, setPlaylistLink] = useState('');
+
+  const {playlistDetails} = useContext(SongsContext);
+
+  useEffect(() => {
+    console.log("Video Titles Count ", playlistDetails.videoTitles.length);
+  },[playlistDetails])
 
   //Send to Youtube API
   const handleBtnClick = () => {
@@ -51,13 +59,21 @@ const Main = () => {
           <Btn BtnText="Get Songs >" BtnWidth="142px" onClickFunction={handleBtnClick} />
         </div>
       </div>
-      <div className='RadioSection'>
+      <PlaylistCard 
+      PlaylistName={playlistDetails.playlistName}
+      PlaylistCreator={playlistDetails.creator}
+      VidCount={playlistDetails.videoTitles.length}
+      DatePub={playlistDetails.datePublished}
+      />
+      
+
+      {/* <div className='RadioSection'>
         <div className='Radio-Option'>
           <RadioBtn />
           <p>Create a new Spotify Playlist</p>
         </div>
 
-      </div>
+      </div> */}
 
     </div>
   )

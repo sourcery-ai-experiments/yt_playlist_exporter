@@ -5,9 +5,9 @@ import axios from '../components/AxiosConfig/axiosConfig'
 const SongsContext = createContext();
 
 const SongsProvider = ({children}) => {
-    const [videoTitles, setVideoTitles] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isDataFetched, setIsDataFetched] = useState(false);
+    const [playlistDetails, setPlaylistDetails] = useState({playlistName: '', creator: '', datePublished: '', videoTitles: []});
     const {isPlaylistLinkSet, isPlaylistLinkValid, PlaylistID} = useContext(PlaylistLinkStatusContext);
 
     useEffect(() => {
@@ -15,7 +15,12 @@ const SongsProvider = ({children}) => {
             setIsLoading(true);
             axios.get(`/videos/${PlaylistID}`)
                 .then(res => {
-                    setVideoTitles(res.data);
+                    setPlaylistDetails({
+                        playlistName: res.data.playlistName,
+                        creator: res.data.creator,
+                        datePublished: res.data.datePublished,
+                        videoTitles: res.data.videoTitles
+                    });
                     setIsLoading(false);
                     setIsDataFetched(true);
                 })
@@ -23,13 +28,13 @@ const SongsProvider = ({children}) => {
                     console.log(err);
                     setIsLoading(false);
                     setIsDataFetched(false);
-                    setVideoTitles([]);
+                    setPlaylistDetails({playlistName: '', creator: '', datePublished: '', videoTitles: []});
                 })
         }
     }, [isPlaylistLinkSet, isPlaylistLinkValid, PlaylistID])
 
     return (
-        <SongsContext.Provider value={{videoTitles, setVideoTitles, isLoading, isDataFetched}}>
+        <SongsContext.Provider value={{isLoading, isDataFetched, playlistDetails}}>
             {children}
         </SongsContext.Provider>
     )
