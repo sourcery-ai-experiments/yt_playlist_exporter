@@ -1,0 +1,64 @@
+.PlaylistCard-Container{
+    margin: 0;
+    margin-left: 5%;
+    width: 80%;
+    height: 30%;
+
+    border-radius: 4px; 
+    background-color: #B8FF9F;
+    border: 2px solid black;
+    box-shadow: 3px 3px;
+    display: flex;
+    align-items: center;
+}
+
+.Playlist-Thumbnail{
+    border: 2px solid black;
+    width: 30%;
+    height: 80%;
+    margin-left: 2%;
+}
+
+.Playlist-Thumbnail img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.Playlist-Info{
+    width: 63.5%;
+    height: 80%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.Playlist-Name{
+    height:auto;
+    margin: 0;
+    text-align: top;
+}
+
+.Playlist-Name p{
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+.Playlist-Creator{
+
+    font-size: 1em;
+    height: 40%;
+}
+
+.Other-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.Playlist-Title{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+}
+

@@ -5,15 +5,15 @@ import { PlaylistLinkStatusContext } from '../../Context/PlaylistLinkStatus'
 
 const SongList = () => {
   const { isPlaylistLinkSet, isPlaylistLinkValid } = useContext(PlaylistLinkStatusContext);
-  const {videoTitles, isLoading, isDataFetched} = useContext(SongsContext);
-  console.log(videoTitles);
+  const {isLoading, isDataFetched, playlistDetails} = useContext(SongsContext);
+  console.log(playlistDetails);
   return (
     <div className='SongList-container'>
       {
         isLoading ? 
         <div>Loading...</div> :
         isPlaylistLinkSet && isPlaylistLinkValid ?
-          isDataFetched?
+          isDataFetched?  
             null
             :
             <div className='Link-Not-Found'>

@@ -10,8 +10,26 @@ router.get('/:playlistId', async (req, res) => {
   const { playlistId } = req.params;
   let videoTitles = [];
   let nextPageToken = null;
+  let playlistName = '';
+  let creator = '';
+  let datePublished = '';
 
   try {
+    // Get playlist details
+    const playlistResponse = await youtube.playlists.list({
+      part: 'snippet',
+      id: playlistId,
+      key: YT_API,
+    });
+
+    if (playlistResponse.data.items.length > 0) {
+      const playlist = playlistResponse.data.items[0];
+      playlistName = playlist.snippet.title;
+      creator = playlist.snippet.channelTitle;
+      datePublished = playlist.snippet.publishedAt;
+    }
+
+    // Get playlist items
     do {
       const response = await youtube.playlistItems.list({
         part: 'snippet',
@@ -26,7 +44,7 @@ router.get('/:playlistId', async (req, res) => {
       nextPageToken = newNextPageToken;
     } while (nextPageToken);
 
-    res.json({ videoTitles });
+    res.json({ playlistName, creator, datePublished, videoTitles });
   } catch (err) {
     console.error('YouTube API error:', err);
     res.status(500).json({ error: 'Internal Server Error' });
