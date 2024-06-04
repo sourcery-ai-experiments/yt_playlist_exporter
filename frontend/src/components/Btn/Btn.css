@@ -1,0 +1,20 @@
+.Btn{
+    background-color: #FFA6F6;
+    height: 41px;
+    padding: 0;
+    border-radius: 4px;
+    border: 2px solid black;
+    box-shadow: 3px 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+}
+.Btn:hover{
+    background-color: #ffa6f6df;
+}
+
+.Btn:active{
+    transform: translateX(0.1em) translateY(0.1em);
+    box-shadow: 1px 1px;
+}
+
+

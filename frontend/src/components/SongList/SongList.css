@@ -1,0 +1,22 @@
+.SongList-container {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    background-color: #A8A6FF;
+    border-left: 3px solid black;
+    display: flex;
+  }
+
+  .Link-Not-Found{
+    margin-top: 10%;
+  }
+
+  .Link-Not-Found p{
+    margin: 0;
+    margin-left: 5%;
+  }
+
+  .Link-Not-Found h1{
+    margin:0;
+    margin-left: 5%;
+  }

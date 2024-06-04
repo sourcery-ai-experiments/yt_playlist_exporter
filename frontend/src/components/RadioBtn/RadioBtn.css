@@ -1,0 +1,43 @@
+/* Hide the default radio button */
+.RadioBtn {
+    display: none;
+}
+
+/* Create a custom radio button */
+.RadioBtn + label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: inline-block;
+    color: #393939;
+}
+
+/* Create a custom indicator (circle) */
+.RadioBtn + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: #FF9F9F;
+}
+
+/* Spawn a new circle inside the original when it's checked */
+.RadioBtn:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.radio-container {
+    display: flex;
+    margin-top: 2px;
+}
