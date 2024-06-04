@@ -6,27 +6,27 @@ import InputBox from '../InputBox/InputBox'
 import RadioBtn from '../RadioBtn/RadioBtn'
 
 const Main = () => {
-  const { setIsPlaylistLinkSet, isPlaylistLinkSet } = useContext(PlaylistLinkStatusContext);
+  const { setIsPlaylistLinkSet, isPlaylistLinkSet, setIsPlaylistLinkValid } = useContext(PlaylistLinkStatusContext);
   const [playlistLink, setPlaylistLink] = useState('');
   const [playlistID, setPlaylistID] = useState('');
 
   //Send to Youtube API
   const handleBtnClick = () => {
-    const youtubePlaylistRegex = /^https?:\/\/(www\.)?youtube\.com\/playlist\?list=[\w-]+$/;
-    if (!youtubePlaylistRegex.test(playlistLink)) {
-      if (playlistLink !== '') {
-        const link = new URL(playlistLink);
-        const params = new URLSearchParams(link.search)
-        setPlaylistID(params.get('list'));
-        setIsPlaylistLinkSet(true);
-      } else {
+    const youtubePlaylistRegex = /^https?:\/\/(www\.)?youtube\.com\/(watch\?.*v=[\w-]+&list=|playlist\?list=)[\w-]+(&.*)?$/;
+    if (playlistLink !== '' && youtubePlaylistRegex.test(playlistLink)) {
+      setIsPlaylistLinkValid(true);
+      const link = new URL(playlistLink);
+      const params = new URLSearchParams(link.search)
+      setPlaylistID(params.get('list'));
+      setIsPlaylistLinkSet(true);
+    } else {
+      if (playlistLink === '') {
         console.log("Playlist link is empty");
-        setIsPlaylistLinkSet(false);
+      } else {
+        console.log("Invalid Youtube Playlist Link");
       }
-    }
-    else {
-      console.log("Invalid Youtube Playlist Link");
       setIsPlaylistLinkSet(false);
+      setIsPlaylistLinkValid(false);
     }
   }
 
