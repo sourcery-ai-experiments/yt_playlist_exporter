@@ -1,28 +1,41 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './Main.css'
+import { PlaylistLinkStatusContext } from '../../Context/PlaylistLinkStatus'
 import Btn from '../Btn/Btn'
 import InputBox from '../InputBox/InputBox'
 import RadioBtn from '../RadioBtn/RadioBtn'
 
 const Main = () => {
-
+  const { setIsPlaylistLinkSet, isPlaylistLinkSet } = useContext(PlaylistLinkStatusContext);
   const [playlistLink, setPlaylistLink] = useState('');
   const [playlistID, setPlaylistID] = useState('');
 
   //Send to Youtube API
   const handleBtnClick = () => {
-    if (playlistLink !== '') {
-      console.log("Link is ", playlistLink);
-      const link = new URL(playlistLink);
-      const params = new URLSearchParams(link.search)
-      setPlaylistID(params.get('list'));
-    } else {
-      console.log("Playlist link is empty");
+    const youtubePlaylistRegex = /^https?:\/\/(www\.)?youtube\.com\/playlist\?list=[\w-]+$/;
+    if (!youtubePlaylistRegex.test(playlistLink)) {
+      if (playlistLink !== '') {
+        const link = new URL(playlistLink);
+        const params = new URLSearchParams(link.search)
+        setPlaylistID(params.get('list'));
+        setIsPlaylistLinkSet(true);
+      } else {
+        console.log("Playlist link is empty");
+        setIsPlaylistLinkSet(false);
+      }
+    }
+    else {
+      console.log("Invalid Youtube Playlist Link");
+      setIsPlaylistLinkSet(false);
     }
   }
 
   useEffect(() => {
-    console.log("Playlist ID is ", playlistID);
+    console.log("Is Playlist Link Set ?", isPlaylistLinkSet);
+  }, [isPlaylistLinkSet])
+
+  useEffect(() => {
+    playlistID != "" ? console.log("Playlist ID is ", playlistID) : console.log("Playlist ID is null");
   }, [playlistID])
 
 
@@ -41,10 +54,10 @@ const Main = () => {
       </div>
       <div className='RadioSection'>
         <div className='Radio-Option'>
-        <RadioBtn />
-        <p>Create a new Spotify Playlist</p>
+          <RadioBtn />
+          <p>Create a new Spotify Playlist</p>
         </div>
-        
+
       </div>
 
     </div>

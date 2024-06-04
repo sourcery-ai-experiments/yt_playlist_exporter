@@ -1,4 +1,5 @@
 import React from "react";
+import { PlaylistLinkStatusProvider } from "./Context/PlaylistLinkStatus";
 import SongList from "./components/SongList/SongList";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
@@ -7,6 +8,7 @@ import "./App.css";
 const App = () => {
   return (
     <>
+      <PlaylistLinkStatusProvider>
       <div className="App-Wrapper">
         <div className="Main-App-Container">
           <Main />
@@ -18,6 +20,7 @@ const App = () => {
           <Footer />
         </div>
       </div>
+      </PlaylistLinkStatusProvider>
     </>
   )
 };
