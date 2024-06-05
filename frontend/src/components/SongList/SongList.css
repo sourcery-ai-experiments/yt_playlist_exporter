@@ -5,6 +5,7 @@
     background-color: #A8A6FF;
     border-left: 3px solid black;
     display: flex;
+    justify-content: center;
   }
 
   .Link-Not-Found{

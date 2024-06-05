@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import './SongList.css'
+import PlaylistSongs from '../PlaylistSongs/PlaylistSongs'
 import { SongsContext } from '../../Context/Songs'
 import { PlaylistLinkStatusContext } from '../../Context/PlaylistLinkStatus'
 
@@ -14,7 +15,7 @@ const SongList = () => {
         <div>Loading...</div> :
         isPlaylistLinkSet && isPlaylistLinkValid ?
           isDataFetched?  
-            null
+            <PlaylistSongs/>
             :
             <div className='Link-Not-Found'>
               <h1>Oops!</h1>

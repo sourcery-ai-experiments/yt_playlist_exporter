@@ -14,7 +14,7 @@ const Main = () => {
   const {playlistDetails} = useContext(SongsContext);
 
   useEffect(() => {
-    console.log("Video Titles Count ", playlistDetails.videoTitles.length);
+    console.log("Video Titles Count ", playlistDetails.videoInfo.length); // Changed videoTitles to videoInfo
   },[playlistDetails])
 
   //Send to Youtube API
@@ -62,8 +62,9 @@ const Main = () => {
       <PlaylistCard 
       PlaylistName={playlistDetails.playlistName}
       PlaylistCreator={playlistDetails.creator}
-      VidCount={playlistDetails.videoTitles.length}
+      VidCount={playlistDetails.videoInfo.length} // Changed videoTitles to videoInfo
       DatePub={playlistDetails.datePublished}
+      Thumbnail={playlistDetails.thumbnail}
       />
       
 

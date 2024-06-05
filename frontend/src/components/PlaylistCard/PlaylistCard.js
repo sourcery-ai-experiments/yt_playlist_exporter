@@ -1,6 +1,6 @@
 import React from 'react'
 import './PlaylistCard.css'
-import defaultThumbnail from '../../Assets/DefaultPlaylistThumbnail.jpg'
+import defaultThumbnail from '../../Assets/DefaultThumbnail.jpg'
 
 const PlaylistCard = ({ PlaylistName, PlaylistCreator, VidCount, DatePub, Thumbnail }) => {
     return (
