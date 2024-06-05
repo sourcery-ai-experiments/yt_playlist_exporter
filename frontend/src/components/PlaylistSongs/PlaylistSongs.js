@@ -7,9 +7,6 @@ const PlaylistSongs = () => {
     const {playlistDetails} = useContext(SongsContext);
   return (
     <div className='PlaylistSongs-Container'>
-        <div className='PlaylistSongs-Heading'>
-            <span>Playlist Songs:</span>
-        </div>
         <div className='PlaylistSongs-List'>
             {playlistDetails.videoInfo.map((video, index) => (
                 <SongCard key={index} SongArtist={video.artist} SongTitle={video.title} Thumbnail={video.thumbnail} />

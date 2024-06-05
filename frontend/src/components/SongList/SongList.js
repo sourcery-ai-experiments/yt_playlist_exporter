@@ -14,8 +14,14 @@ const SongList = () => {
         isLoading ? 
         <div>Loading...</div> :
         isPlaylistLinkSet && isPlaylistLinkValid ?
-          isDataFetched?  
+          isDataFetched?
+            <>
+            <div className='SongList-Header'>
+              <span>Playlist Songs:</span>
+            </div>
             <PlaylistSongs/>
+            </>  
+            
             :
             <div className='Link-Not-Found'>
               <h1>Oops!</h1>

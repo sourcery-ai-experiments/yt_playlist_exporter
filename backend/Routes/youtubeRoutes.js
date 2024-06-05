@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { google } = require('googleapis');
 const youtube = google.youtube('v3');
-const default_thumbnail_url = '../../Assets/DefaultThumbnail.jpg'; 
+const default_thumbnail_url = '../DefaultThumbnail.jpg'; 
 const YT_API = process.env.YT_API;
 
 router.get('/:playlistId', async (req, res) => {
