@@ -59,13 +59,18 @@ const Main = () => {
           <Btn BtnText="Get Songs >" BtnWidth="142px" onClickFunction={handleBtnClick} />
         </div>
       </div>
-      <PlaylistCard 
-      PlaylistName={playlistDetails.playlistName}
-      PlaylistCreator={playlistDetails.creator}
-      VidCount={playlistDetails.videoInfo.length} // Changed videoTitles to videoInfo
-      DatePub={playlistDetails.datePublished}
-      Thumbnail={playlistDetails.thumbnail}
-      />
+      {playlistDetails.videoInfo.length>0 ?
+        <PlaylistCard 
+        PlaylistName={playlistDetails.playlistName}
+        PlaylistCreator={playlistDetails.creator}
+        VidCount={playlistDetails.videoInfo.length} // Changed videoTitles to videoInfo
+        DatePub={playlistDetails.datePublished}
+        Thumbnail={playlistDetails.thumbnail}
+        />
+        :
+        null
+      }
+      
       
 
       {/* <div className='RadioSection'>

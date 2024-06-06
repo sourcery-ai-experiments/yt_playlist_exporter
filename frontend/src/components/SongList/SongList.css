@@ -6,6 +6,14 @@
     border-left: 3px solid black;
     display: flex;
     flex-direction: column;
+    /* justify-content: center; */
+  }
+
+  .Loader-Container{
+    margin-top: 2rem;
+    width: 100%;
+    height: auto;
+    display: flex;
     justify-content: center;
   }
 

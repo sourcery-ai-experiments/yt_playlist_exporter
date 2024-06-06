@@ -3,7 +3,6 @@
     margin-left: 5%;
     width: 80%;
     height: 30%;
-
     border-radius: 4px; 
     background-color: #B8FF9F;
     border: 2px solid black;
@@ -35,15 +34,16 @@
 }
 
 .Playlist-Name{
-    height:auto;
+    height: 20rem;
+    width: 100%;
     margin: 0;
-    text-align: top;
 }
 
 .Playlist-Name p{
     margin: 0;
     font-weight: bold;
     font-size: 1.5em;
+    text-align: top;;
 }
 .Playlist-Creator{
 
