@@ -1,0 +1,46 @@
+.YtBtn{
+    background-color: #FF0000;
+    height: 41px;
+    width: 4rem;
+    margin-right: 1rem;
+    padding: 0;
+    border-radius: 4px;
+    border: 2px solid black;
+    box-shadow: 3px 3px black;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.YtBtn div{
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.YtBtn img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.YtBtn:hover{
+    background-color: rgb(255, 52, 52);
+}
+
+.YtBtn:active{
+    transform: translateX(0.1em) translateY(0.1em);
+    box-shadow: 1px 1px;
+}
+
+.Alert-Container-yt{
+    position: absolute;
+    bottom: 2.3rem;
+    right:0.5rem;
+}
+
+.Ok-Alert-Container-yt{
+    position: absolute;
+    bottom: 2.8rem;
+    right:.8rem;
+}

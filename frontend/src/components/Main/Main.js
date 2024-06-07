@@ -5,7 +5,10 @@ import { SongsContext } from '../../Context/Songs'
 import Btn from '../Btn/Btn'
 import PlaylistCard from '../PlaylistCard/PlaylistCard'
 import InputBox from '../InputBox/InputBox'
+import YoutubeBtn from '../YoutubeBtn/YoutubeBtn'
+import SpotBtn from '../SpotifyBtn/SpotBtn'
 import RadioBtn from '../RadioBtn/RadioBtn'
+
 
 const Main = () => {
   const { setIsPlaylistLinkSet, isPlaylistLinkSet, setIsPlaylistLinkValid, setPlaylistID, PlaylistID } = useContext(PlaylistLinkStatusContext);
@@ -70,16 +73,11 @@ const Main = () => {
         :
         null
       }
+      <div className='Connect-Section'>
+        <YoutubeBtn/>
+        <SpotBtn/>
+      </div> 
       
-      
-
-      {/* <div className='RadioSection'>
-        <div className='Radio-Option'>
-          <RadioBtn />
-          <p>Create a new Spotify Playlist</p>
-        </div>
-
-      </div> */}
 
     </div>
   )

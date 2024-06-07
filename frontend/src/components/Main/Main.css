@@ -47,4 +47,17 @@
     margin: 0;
   }
 
+  .Connect-Section{
+    /* border: 1px solid red; */
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    position: relative;
+    bottom: 7rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    
+
+  }
 

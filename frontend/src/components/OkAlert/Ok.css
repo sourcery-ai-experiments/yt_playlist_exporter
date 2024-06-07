@@ -1,0 +1,10 @@
+.ok-Alert-Container{
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+.ok-Alert-Container img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;  
+}
