@@ -17,7 +17,7 @@ const SpotBtn = ({ onClickFunction }) => {
                 <img src={SpotPlay} alt='Spotify'/>
                 </div>
             </button>
-            {/* {isSpotifyAuthenticated? 
+            {isSpotifyAuthenticated? 
                 <div className='Ok-Alert-Container-Spot'>
                     <Ok/>
                 </div>
@@ -25,7 +25,7 @@ const SpotBtn = ({ onClickFunction }) => {
                 <div className='Alert-Container-Spot'>
                     <Alert/>
                 </div>
-            } */}
+            }
         </div>
     )
 }
