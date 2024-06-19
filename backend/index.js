@@ -8,13 +8,18 @@ const PORT = process.env.PORT || 4000;
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
 app.use(express.json());
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Set secure: true if using HTTPS
+  cookie: { secure: false,
+    maxAge:1800000  
+   } // Set secure: true if using HTTPS
 }));
  
 app.use('/videos', youtubeRoutes);

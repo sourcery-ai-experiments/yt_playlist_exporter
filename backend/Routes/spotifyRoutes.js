@@ -99,6 +99,9 @@ router.get('/callback', async (req, res) => {
     }
 
     const { access_token, refresh_token } = data;
+    // Save the tokens for later use
+    process.env.SPOT_ACCESS_TOKEN = access_token;
+    process.env.SPOT_REFRESH_TOKEN = refresh_token;
 
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);

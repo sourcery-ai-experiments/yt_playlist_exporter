@@ -1,6 +1,8 @@
 .ok-Alert-Container{
     width: 1.8rem;
     height: 1.8rem;
+    border-radius: 50%;
+    border: 1px solid red;
 }
 
 .ok-Alert-Container img{

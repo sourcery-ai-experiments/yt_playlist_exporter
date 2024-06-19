@@ -1,11 +1,11 @@
 import React from 'react'
 import './Ok.css'
-import alertImg from '../../Assets/ok.svg'
 
-const Ok = () => {
+
+const Ok = ({profileImg}) => {
   return (
     <div className='ok-Alert-Container'>
-        <img src={alertImg} alt='Alert'/>
+        <img src={profileImg} alt='Alert'/>
     </div>
   )
 }
