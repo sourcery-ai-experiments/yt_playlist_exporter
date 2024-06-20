@@ -41,7 +41,7 @@ const SongList = () => {
             isPlaylistLinkValid ?
               <div className='Link-Not-Found'>
                 <h1>Hi there!</h1>
-                <p>Paste your youtube playlist link to get started!</p>
+                <p>Connect your Youtube and Spotify accounts to get started!</p>
               </div>
               :
               <div className='Link-Not-Found'>

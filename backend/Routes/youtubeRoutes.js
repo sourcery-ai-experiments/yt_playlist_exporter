@@ -5,6 +5,7 @@ const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const default_thumbnail_url = '../DefaultThumbnail.jpg';
 const YT_API = process.env.YT_API;
+const cors = require('cors');
 
 const client_id = process.env.YT_CLIENT_ID;
 const client_secret = process.env.YT_CLIENT_SECRET;
@@ -15,6 +16,11 @@ const oauth2Client = new OAuth2(
   client_secret,
   redirect_uri
 );
+
+router.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
 
 // Redirect to Google's OAuth 2.0 endpoint
 router.get('/auth', (req, res) => {
@@ -27,7 +33,7 @@ router.get('/auth', (req, res) => {
     scope: scopes,
     prompt: 'select_account' 
   });
-  res.redirect(url);
+  res.send({url: url});
 });
 
 // Logout and clear session tokens
@@ -60,7 +66,7 @@ router.get('/callback', async (req, res) => {
 
     req.session.profile = profile; // Save profile to session
 
-    res.redirect('/videos/profile'); // Redirect to profile page
+    res.redirect('http://localhost:3000'); // Redirect to frontend
 
   } catch (error) {
     console.error('Error retrieving tokens:', error);
@@ -111,7 +117,7 @@ router.get('/:playlistId', async (req, res) => {
   }
 
   oauth2Client.setCredentials(req.session.tokens);
-  console.log("Session tokens: ", req.session.tokens); // Log the session tokens
+  // console.log("Session tokens: ", req.session.tokens); // Log the session tokens
 
   try {
     // Get playlist details

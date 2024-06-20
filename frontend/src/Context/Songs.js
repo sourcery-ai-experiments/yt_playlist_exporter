@@ -14,7 +14,7 @@ const SongsProvider = ({children}) => {
         if (isPlaylistLinkSet && isPlaylistLinkValid && PlaylistID !== "") {
             setIsLoading(true);
             console.log("Playlist ID at Songs is ", PlaylistID);
-            axios.get(`/videos/${PlaylistID}`)
+            axios.get(`/videos/${PlaylistID}`, {withCredentials: true})
                 .then(res => {
                     setPlaylistDetails({
                         playlistName: res.data.playlistName,
