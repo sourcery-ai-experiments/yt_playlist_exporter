@@ -8,7 +8,7 @@ const SongsProvider = ({children}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isDataFetched, setIsDataFetched] = useState(false);
     const [playlistDetails, setPlaylistDetails] = useState({playlistName: '', creator: '', datePublished: '', videoInfo: []}); // Renamed videoTitles to videoInfo
-    const {isPlaylistLinkSet, isPlaylistLinkValid, PlaylistID, IdType} = useContext(PlaylistLinkStatusContext);
+    const {isPlaylistLinkSet, isPlaylistLinkValid, PlaylistID, IdType,mixLink} = useContext(PlaylistLinkStatusContext);
 
     useEffect(() => {
         if (isPlaylistLinkSet && isPlaylistLinkValid && PlaylistID !== "") {
@@ -17,7 +17,26 @@ const SongsProvider = ({children}) => {
             console.log("Id type : ", IdType);
 
             if(IdType === 'Mix') {
-                //Hit the mix endpoint. Mix endpoint not yet tested
+                console.log("Mix Link is : ", mixLink);
+                axios.get('/videos/mix', { params: { mixUrl: mixLink }, withCredentials: true })
+                .then(res => {
+                    console.log(res.data.videoInfo);
+                    setPlaylistDetails({
+                        playlistName: res.data.mixName,
+                        creator: 'Youtube',
+                        datePublished: '',
+                        videoInfo: res.data.videoInfo,
+                        thumbnail: res.data.firstVideoThumbnail
+                    });
+                    setIsLoading(false);
+                    setIsDataFetched(true);
+                })
+                .catch(err => {
+                    console.log(err);
+                    setIsLoading(false);
+                    setIsDataFetched(false);
+                    setPlaylistDetails({playlistName: '', creator: '', datePublished: '', videoInfo: [], thumbnail: ''}); 
+                })
             }
             else if(IdType === 'Playlist') {
                 axios.get(`/videos/${PlaylistID}`, {withCredentials: true})

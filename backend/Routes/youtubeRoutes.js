@@ -151,7 +151,7 @@ async function scrapeMixVideos(mixUrl) {
 
 
 router.get('/mix', async (req, res) => {
-  const { mixUrl } = req.query; // Assuming mixUrl is passed as a query parameter
+  const { mixUrl } = req.query;
   console.log("Mix URL: ", mixUrl);
 
   try {
@@ -161,6 +161,7 @@ router.get('/mix', async (req, res) => {
 
     // Initialize variables to store playlist information
     let videoInfo = [];
+    let mixName = '';
     let firstVideoThumbnail = '';
 
     // Process each video ID to fetch its details
@@ -185,11 +186,12 @@ router.get('/mix', async (req, res) => {
         // Save the thumbnail of the first video
         if (i === 0) {
           firstVideoThumbnail = thumbnail;
+          mixName = video.snippet.title;
         }
       }
     }
 
-    res.json({ videoInfo, firstVideoThumbnail });
+    res.json({ mixName,videoInfo,firstVideoThumbnail });
 
   } catch (error) {
     console.error('Error fetching mix information:', error);
