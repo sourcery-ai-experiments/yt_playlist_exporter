@@ -11,7 +11,7 @@ import RadioBtn from '../RadioBtn/RadioBtn'
 
 
 const Main = () => {
-  const { setIsPlaylistLinkSet, isPlaylistLinkSet, setIsPlaylistLinkValid, setPlaylistID, PlaylistID } = useContext(PlaylistLinkStatusContext);
+  const { setIsPlaylistLinkSet, isPlaylistLinkSet, setIsPlaylistLinkValid, setPlaylistID, PlaylistID, setIdType } = useContext(PlaylistLinkStatusContext);
   const [playlistLink, setPlaylistLink] = useState('');
 
   const {playlistDetails} = useContext(SongsContext);
@@ -27,6 +27,12 @@ const Main = () => {
       setIsPlaylistLinkValid(true);
       const link = new URL(playlistLink);
       const params = new URLSearchParams(link.search)
+      const plId = params.get('list');
+      if(plId.substring(0, 2) === 'RD') {
+        setIdType('Mix');
+      }else {
+        setIdType('Playlist');
+      }
       setPlaylistID(params.get('list'));
       setIsPlaylistLinkSet(true);
     } else {

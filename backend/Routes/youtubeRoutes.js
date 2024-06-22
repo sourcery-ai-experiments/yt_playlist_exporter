@@ -6,6 +6,7 @@ const OAuth2 = google.auth.OAuth2;
 const default_thumbnail_url = '../DefaultThumbnail.jpg';
 const YT_API = process.env.YT_API;
 const cors = require('cors');
+const puppeteer = require('puppeteer');
 
 const client_id = process.env.YT_CLIENT_ID;
 const client_secret = process.env.YT_CLIENT_SECRET;
@@ -102,6 +103,100 @@ router.get('/auth-status', (req, res) => {
   }
 });
 
+
+// Scrape a YouTube mix playlist for video links
+
+async function scrapeMixVideos(mixUrl) {
+  const browser = await puppeteer.launch({ headless: true });
+  const page = await browser.newPage();
+  
+  try {
+    await page.goto(mixUrl, { waitUntil: 'networkidle2' });
+
+    const videoLinks = new Set();
+
+    while (true) {
+      const newVideoLinks = await page.evaluate(() => {
+        return Array.from(document.querySelectorAll('ytd-playlist-panel-video-renderer a#wc-endpoint')).map(a => a.href);
+      });
+
+      newVideoLinks.forEach(link => videoLinks.add(link));
+
+      const loadMoreButton = await page.$('button#more-button');
+      if (!loadMoreButton) {
+        console.log('No more load more button found.');
+        break;
+      }
+
+      await loadMoreButton.click();
+      console.log('Clicked load more button.');
+      await page.waitForTimeout(2000); // Adjust as necessary
+    }
+
+    // Extract video IDs from video links
+    const vidIds = Array.from(videoLinks).map(link => {
+      // Example YouTube video link: "https://www.youtube.com/watch?v=VIDEO_ID"
+      const url = new URL(link);
+      return url.searchParams.get('v'); // Extracts the video ID from query parameter 'v'
+    }).filter(id => id); // Filter out any null or undefined values
+
+    return vidIds;
+  } catch (error) {
+    console.error('Error scraping mix videos:', error);
+    throw error; // Rethrow the error to propagate it to the caller
+  } finally {
+    await browser.close();
+  }
+}
+
+
+router.get('/mix', async (req, res) => {
+  const { mixUrl } = req.query; // Assuming mixUrl is passed as a query parameter
+  console.log("Mix URL: ", mixUrl);
+
+  try {
+    // Scrape video IDs from mix URL
+    const videoIDs = await scrapeMixVideos(mixUrl);
+    console.log("Video IDs:", videoIDs);
+
+    // Initialize variables to store playlist information
+    let videoInfo = [];
+    let firstVideoThumbnail = '';
+
+    // Process each video ID to fetch its details
+    for (let i = 0; i < videoIDs.length; i++) {
+      const videoId = videoIDs[i];
+
+      // Get video details using YouTube Data API
+      const videoResponse = await youtube.videos.list({
+        part: 'snippet',
+        id: videoId,
+      });
+
+      if (videoResponse.data.items.length > 0) {
+        const video = videoResponse.data.items[0];
+        const thumbnail = video.snippet.thumbnails.high ? video.snippet.thumbnails.high.url : default_thumbnail_url;
+        videoInfo.push({
+          title: video.snippet.title,
+          thumbnail,
+          artist: video.snippet.channelTitle,
+        });
+
+        // Save the thumbnail of the first video
+        if (i === 0) {
+          firstVideoThumbnail = thumbnail;
+        }
+      }
+    }
+
+    res.json({ videoInfo, firstVideoThumbnail });
+
+  } catch (error) {
+    console.error('Error fetching mix information:', error);
+    res.status(500).send('Failed to fetch mix information');
+  }
+});
+
 router.get('/:playlistId', async (req, res) => {
   const { playlistId } = req.params;
   let videoInfo = [];
@@ -116,7 +211,7 @@ router.get('/:playlistId', async (req, res) => {
     return res.status(403).json({ error: 'User not authenticated' });
   }
 
-  oauth2Client.setCredentials(req.session.tokens);
+  // oauth2Client.setCredentials(req.session.tokens);
   // console.log("Session tokens: ", req.session.tokens); // Log the session tokens
 
   try {
