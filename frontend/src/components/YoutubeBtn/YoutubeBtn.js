@@ -12,10 +12,10 @@ const YoutubeBtn = () => {
     useEffect(() => {
         const fetchAuthStatus = async () => {
             try {
-                console.log("Fetching authentication status");
+                console.log("Fetching YT authentication status");
                 const response = await axios.get('/videos/auth-status', { withCredentials: true });
                 const { isGoogleAuthenticated, GoogleProfile } = response.data;
-                console.log("Auth json: ",response.data);
+                console.log("YT Auth json: ",response.data);
                 setIsYouTubeAuthenticated(isGoogleAuthenticated);
                 if (isGoogleAuthenticated) {
                     setYTProfile(GoogleProfile);

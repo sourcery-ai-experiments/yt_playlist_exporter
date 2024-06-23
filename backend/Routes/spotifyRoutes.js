@@ -44,8 +44,8 @@ router.get('/login', (req, res) => {
   authUrl.searchParams.append('state', state);
   authUrl.searchParams.append('code_challenge_method', 'S256');
   authUrl.searchParams.append('code_challenge', code_challenge);
-
-  res.redirect(authUrl.toString());
+  authUrl.searchParams.append('show_dialog', 'true');
+  res.send({ url: authUrl.toString() });
 });
 
 router.get('/callback', async (req, res) => {
@@ -53,8 +53,6 @@ router.get('/callback', async (req, res) => {
 
   // Retrieve the code_verifier from the session (or use a database)
   const code_verifier = req.session.code_verifier;
-  // console.log("Code is: " + code);
-  // console.log("Code verifier is: " + code_verifier);
 
   if (!code) {
     res.status(400).send('Authorization code is missing');
@@ -100,17 +98,46 @@ router.get('/callback', async (req, res) => {
 
     const { access_token, refresh_token } = data;
     // Save the tokens for later use
-    process.env.SPOT_ACCESS_TOKEN = access_token;
-    process.env.SPOT_REFRESH_TOKEN = refresh_token;
+    req.session.spotify_access_token = access_token;
+    req.session.spotify_refresh_token = refresh_token;
 
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
 
-    res.send('Authentication successful! You can now create playlists.');
+    // Fetch user profile
+    const userProfile = await spotifyApi.getMe();
+    const profileImage = userProfile.body.images.length > 0 ? userProfile.body.images[0].url : null;
+
+    // Create SpotifyProfile object
+    const SpotifyProfile = {
+      name: userProfile.body.display_name,
+      photoUrl: profileImage
+    };
+
+    // Store user profile image in session
+    req.session.spotify_profile = SpotifyProfile;
+
+    res.redirect('http://localhost:3000'); // Redirect to frontend
   } catch (err) {
     console.error('Error during authentication:', err);
     res.status(500).send('Authentication failed.');
   }
 });
 
+router.get('/auth-status', (req, res) => {
+  const access_token = req.session.spotify_access_token;
+
+  if (access_token) {
+    res.json({
+      isSpotyAuthenticated: true,
+      SpotyProfile: req.session.spotify_profile
+    });
+  } else {
+    res.json({
+      isSpotyAuthenticated: false
+    });
+  }
+});
+
 module.exports = router;
+
