@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './PlaylistCard.css'
 import defaultThumbnail from '../../Assets/DefaultThumbnail.jpg'
+import { PlaylistLinkStatusContext } from '../../Context/PlaylistLinkStatus'
 
 const PlaylistCard = ({ PlaylistName, PlaylistCreator, VidCount, DatePub, Thumbnail }) => {
+    const {IdType} = useContext(PlaylistLinkStatusContext)
     return (
         <div className='PlaylistCard-Container'>
             <div className='Playlist-Thumbnail'>
@@ -19,7 +21,10 @@ const PlaylistCard = ({ PlaylistName, PlaylistCreator, VidCount, DatePub, Thumbn
                 </div>
                 <div className='Other-info'>
                     <span>{VidCount} videos</span>
-                    <span>Published on {new Date(DatePub).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                    {DatePub && <span>Published on {new Date(DatePub).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })}</span>}
+                </div>
+                <div className='ID-type'> 
+                        <span>{IdType}</span>
                 </div>
             </div>
         </div>

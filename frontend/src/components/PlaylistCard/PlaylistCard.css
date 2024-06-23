@@ -1,4 +1,5 @@
 .PlaylistCard-Container{
+    position: relative;
     margin: 0;
     margin-left: 5%;
     width: 80%;
@@ -60,5 +61,27 @@
     height: 50%;
     display: flex;
     flex-direction: column;
+}
+
+.List-type{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.ID-type{
+    position: absolute;
+    bottom: 10%;
+    right: 2%;
+    width: 15%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF9F9F;
+    font-weight: bold;
+    border: 2px solid black;
+    box-shadow: 3px 3px;
+    border-radius: 4px; 
 }
 
