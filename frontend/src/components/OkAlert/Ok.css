@@ -1,0 +1,14 @@
+.ok-Alert-Container {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    border: 2px solid black;
+    box-shadow: 2px 2px black;
+}
+
+.ok-Alert-Container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* Add this line */
+}

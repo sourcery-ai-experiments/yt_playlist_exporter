@@ -5,10 +5,12 @@ import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
 import { SongsProvider } from "./Context/Songs";
+import { AuthProvider } from "./Context/AuthContext";
 
 const App = () => {
   return (
     <>
+      <AuthProvider>
       <PlaylistLinkStatusProvider>
         <SongsProvider>
           <div className="App-Wrapper">
@@ -24,6 +26,7 @@ const App = () => {
           </div>
         </SongsProvider>
       </PlaylistLinkStatusProvider>
+      </AuthProvider>
     </>
   )
 };

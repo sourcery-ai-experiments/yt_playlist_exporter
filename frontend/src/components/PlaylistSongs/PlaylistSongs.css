@@ -1,0 +1,41 @@
+.PlaylistSongs-Container{
+    margin: 0;
+    height: 95%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.PlaylistSongs-Heading{
+    margin: 0;
+    margin-top: 6%;
+    border : 2px solid black;
+
+}
+
+.PlaylistSongs-Heading span{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+.PlaylistSongs-List{
+    
+    max-height: 40em;
+    padding: 0 0.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* margin-top: 1rem; */
+}
+.PlaylistSongs-List::-webkit-scrollbar {
+    width: 7px; /* width of the entire scrollbar */
+  }
+  
+  .PlaylistSongs-List::-webkit-scrollbar-track {
+    background: #A8A6FF; /* color of the tracking area */
+  }
+  
+  .PlaylistSongs-List::-webkit-scrollbar-thumb {
+    background: #7371b5; /* color of the scroll thumb */
+  }
+  
+  .PlaylistSongs-List::-webkit-scrollbar-thumb:hover {
+    background: #484678; /* color of the scroll thumb when hovering */
+  }

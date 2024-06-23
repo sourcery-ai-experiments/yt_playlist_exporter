@@ -1,0 +1,10 @@
+.Alert-Container{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.Alert-Container img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;  
+}

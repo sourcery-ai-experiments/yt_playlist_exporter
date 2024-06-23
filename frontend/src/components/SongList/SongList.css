@@ -5,6 +5,30 @@
     background-color: #A8A6FF;
     border-left: 3px solid black;
     display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+  }
+
+  .Loader-Container{
+    margin-top: 2rem;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .SongList-Header{
+    width: 100%;
+    height: 10%;
+    border-bottom: 3px solid black;
+    background-color: #FFF59F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .SongList-Header span{
+    font-weight: bold;
+    font-size: 1.5em;
   }
 
   .Link-Not-Found{

@@ -1,0 +1,46 @@
+.SpotBtn{
+    background-color: #1ED760;
+    height: 41px;
+    width: 4rem;
+    margin-right: 1rem;
+    padding: 0;
+    border-radius: 4px;
+    border: 2px solid black;
+    box-shadow: 3px 3px black;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.SpotBtn div{
+    height: 3rem;
+    width: 3rem;
+}
+
+.SpotBtn img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.SpotBtn:hover{
+    background-color: #4cdb7e;
+}
+
+.SpotBtn:active{
+    transform: translateX(0.1em) translateY(0.1em);
+    box-shadow: 1px 1px;
+}
+
+.Ok-Alert-Container-Spot{
+    position: absolute;
+    top: 4.8rem;
+    right:0.8rem;
+}
+
+.Alert-Container-Spot{
+    position: absolute;
+    right:0.5rem;
+    top: 4.8rem;
+}
