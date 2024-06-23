@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
     const [isYouTubeAuthenticated, setIsYouTubeAuthenticated] = useState(false);
     const [isSpotifyAuthenticated, setIsSpotifyAuthenticated] = useState(false);
     const [YTProfile, setYTProfile] = useState(null);
+    const [SpotProfile, setSpotProfile] = useState(null);
 
     return (
         <AuthContext.Provider
@@ -19,7 +20,9 @@ export const AuthProvider = ({ children }) => {
                 isSpotifyAuthenticated,
                 setIsSpotifyAuthenticated,
                 YTProfile,
-                setYTProfile
+                setYTProfile,
+                SpotProfile,
+                setSpotProfile
             }}
         >
             {children}
