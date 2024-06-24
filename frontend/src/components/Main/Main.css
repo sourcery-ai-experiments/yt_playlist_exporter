@@ -12,6 +12,7 @@
     height: 12%;
     width: 100%;
     align-items: center;
+    user-select: none;
   }
 
   .Title span{
@@ -57,7 +58,10 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
-    
+  }
 
+  .RadioOption{
+    display: flex;
+    align-items: center;
   }
 

@@ -33,6 +33,7 @@
 
   .Link-Not-Found{
     margin-top: 10%;
+    user-select: none;
   }
 
   .Link-Not-Found p{
