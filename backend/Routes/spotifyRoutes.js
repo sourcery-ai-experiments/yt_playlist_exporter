@@ -9,6 +9,13 @@ const client_id = process.env.SPOT_CLIENT_ID;
 const client_secret = process.env.SPOT_CLIENT_SECRET;
 const redirect_uri = 'http://localhost:4000/spotify/callback';
 
+const spotifyApi = new SpotifyWebApi({
+  clientId: client_id,
+  clientSecret: client_secret,
+  redirectUri: redirect_uri,
+});
+
+
 const generateRandomString = (length) => {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const values = crypto.randomBytes(length);
@@ -63,12 +70,6 @@ router.get('/callback', async (req, res) => {
     res.status(400).send('Code verifier is missing');
     return;
   }
-
-  const spotifyApi = new SpotifyWebApi({
-    clientId: client_id,
-    clientSecret: client_secret,
-    redirectUri: redirect_uri,
-  });
 
   try {
     const url = 'https://accounts.spotify.com/api/token';

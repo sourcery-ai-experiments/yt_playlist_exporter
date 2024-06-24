@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
     border-top: 3px solid black;
+    user-select: none;
 }
 
 .Footer div{

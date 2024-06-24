@@ -84,8 +84,16 @@ const Main = () => {
         <YoutubeBtn/>
         <SpotBtn/>
       </div> 
-      
-
+      <div className='RadioSection'>
+        <div className='RadioOption'>
+          <RadioBtn/>
+          <span>Make new Playlist</span>
+        </div>
+        <div className='RadioOption'>
+          <RadioBtn/>
+          <span>Add Songs to an existing Playlist</span>
+        </div>
+      </div>
     </div>
   )
 }
