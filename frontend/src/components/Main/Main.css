@@ -73,6 +73,7 @@
   border: 2px solid black;
   box-shadow: 3px 3px;
   border-radius: 4px; 
+  margin-top: 0.9rem;
 }
 
 .Option-Section-Header{
@@ -90,7 +91,6 @@
   font-weight: 500;
 }
 .Options-Container{
-
   width: 95%;
   height: 60%;
   display: flex;
