@@ -7,7 +7,8 @@ const SongsContext = createContext();
 const SongsProvider = ({children}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isDataFetched, setIsDataFetched] = useState(false);
-    const [playlistDetails, setPlaylistDetails] = useState({playlistName: '', creator: '', datePublished: '', videoInfo: []}); // Renamed videoTitles to videoInfo
+    const [playlistDetails, setPlaylistDetails] = useState({playlistName: '', creator: '', datePublished: '', videoInfo: []}); 
+    const [selectedSongs, setSelectedSongs] = useState([]); // [ {title: '', artist: '', thumbnail: ''}
     const {isPlaylistLinkSet, isPlaylistLinkValid, PlaylistID, IdType,mixLink} = useContext(PlaylistLinkStatusContext);
 
     useEffect(() => {
@@ -41,11 +42,17 @@ const SongsProvider = ({children}) => {
             else if(IdType === 'Playlist') {
                 axios.get(`/videos/${PlaylistID}`, {withCredentials: true})
                 .then(res => {
+
+                    const newVideoInfo = res.data.videoInfo.map(video => ({
+                        ...video,
+                        checked: true
+                    }));
+
                     setPlaylistDetails({
                         playlistName: res.data.playlistName,
                         creator: res.data.creator,
                         datePublished: res.data.datePublished,
-                        videoInfo: res.data.videoInfo, //videoTitles is now videoInfo
+                        videoInfo: newVideoInfo,
                         thumbnail: res.data.firstVideoThumbnail
                     });
                     setIsLoading(false);
@@ -67,7 +74,7 @@ const SongsProvider = ({children}) => {
     }, [isPlaylistLinkSet, isPlaylistLinkValid, PlaylistID])
 
     return (
-        <SongsContext.Provider value={{isLoading, isDataFetched, playlistDetails}}>
+        <SongsContext.Provider value={{isLoading, isDataFetched, playlistDetails,selectedSongs,setSelectedSongs,setPlaylistDetails}}>
             {children}
         </SongsContext.Provider>
     )
