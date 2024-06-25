@@ -60,8 +60,39 @@
     align-items: flex-end;
   }
 
-  .RadioOption{
-    display: flex;
-    align-items: center;
-  }
+.Option-Section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+  border: 1px solid red;
+  background-color: #FFF59F;
+  width: 80%;
+  height: 15%;
+  border: 2px solid black;
+  box-shadow: 3px 3px;
+  border-radius: 4px; 
+}
 
+.Option-Section-Header{
+
+  width: 95%;
+  height:40%;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+
+.Option-Section-Header p{
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.Options-Container{
+
+  width: 95%;
+  height: 60%;
+  display: flex;
+  justify-content: space-between;
+}

@@ -7,12 +7,18 @@ import PlaylistCard from '../PlaylistCard/PlaylistCard'
 import InputBox from '../InputBox/InputBox'
 import YoutubeBtn from '../YoutubeBtn/YoutubeBtn'
 import SpotBtn from '../SpotifyBtn/SpotBtn'
-import RadioBtn from '../RadioBtn/RadioBtn'
+
 
 
 const Main = () => {
   const { setIsPlaylistLinkSet, isPlaylistLinkSet, setIsPlaylistLinkValid, setPlaylistID, PlaylistID, setIdType,setMixLink } = useContext(PlaylistLinkStatusContext);
   const [playlistLink, setPlaylistLink] = useState('');
+  const [option, setOption] = useState(null);
+
+  const handleOptionSelect = (opt)=>{
+    setOption(opt);
+    console.log("Option Selected ", opt);
+  }
 
   const {playlistDetails} = useContext(SongsContext);
 
@@ -84,14 +90,13 @@ const Main = () => {
         <YoutubeBtn/>
         <SpotBtn/>
       </div> 
-      <div className='RadioSection'>
-        <div className='RadioOption'>
-          <RadioBtn/>
-          <span>Make new Playlist</span>
+      <div className='Option-Section'>
+        <div className='Option-Section-Header'>
+          <p>What do you wanna do?</p>
         </div>
-        <div className='RadioOption'>
-          <RadioBtn/>
-          <span>Add Songs to an existing Playlist</span>
+        <div className='Options-Container'>
+        <Btn BtnText="Create New Playlist" BtnWidth="49%" onClickFunction={()=>handleOptionSelect(1)} />
+        <Btn BtnText="Add Songs to a Playlist" BtnWidth="49%" onClickFunction={()=>handleOptionSelect(2)} />
         </div>
       </div>
     </div>
