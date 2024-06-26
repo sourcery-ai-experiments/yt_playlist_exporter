@@ -7,7 +7,7 @@ import PlaylistCard from '../PlaylistCard/PlaylistCard'
 import InputBox from '../InputBox/InputBox'
 import YoutubeBtn from '../YoutubeBtn/YoutubeBtn'
 import SpotBtn from '../SpotifyBtn/SpotBtn'
-
+import CreatePlaylist from '../CreatePlaylist/CreatePlaylist'
 
 
 const Main = () => {
@@ -99,6 +99,7 @@ const Main = () => {
         <Btn BtnText="Add Songs to a Playlist" BtnWidth="49%" onClickFunction={()=>handleOptionSelect(2)} />
         </div>
       </div>
+      <CreatePlaylist/>
     </div>
   )
 }

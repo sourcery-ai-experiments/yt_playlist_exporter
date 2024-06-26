@@ -1,0 +1,27 @@
+.Create-Playlist-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 4px; 
+  background-color: #B8FF9F;
+  border: 2px solid black;
+  box-shadow: 3px 3px;
+  margin-left: 5%;
+  width: 80%;
+  height: 40%;
+}
+
+.Create-Playlist-Header{
+    font-weight: 500;
+    font-size: 1.2em;
+    margin-left:2.6%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+}
+.Create-Playlist-Header p{
+    margin:0;
+}
+.Create-Playlist-Info{
+    
+}
