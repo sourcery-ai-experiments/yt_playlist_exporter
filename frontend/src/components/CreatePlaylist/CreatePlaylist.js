@@ -6,9 +6,13 @@ import { SongsContext } from '../../Context/Songs';
 
 const CreatePlaylist = () => {
   const { playlistDetails } = useContext(SongsContext);
-  const [thumb, setThumb] = useState(playlistDetails.thumbnail || defaultThumbnail);
-  const [title, setTitle] = useState(''); // State for the playlist title
-  const [description, setDescription] = useState(''); // State for the playlist description
+
+  const plName = playlistDetails.playlistName;
+  const default_desc = 'Playlist created by SpotyTube.me. Enjoy the music!';
+
+  const [thumb, setThumb] = useState(playlistDetails.thumbnail || null);
+  const [title, setTitle] = useState(plName || ''); // State for the playlist title
+  const [description, setDescription] = useState(default_desc); // State for the playlist description
   const inputRef = useRef(null);
 
   const handleBtnClick = () => {
@@ -47,7 +51,7 @@ const CreatePlaylist = () => {
       <div className='Create-Playlist-Info'>
         <div className='Create-Playlist-Img'>
           <div className='Create-Playlist-Img-Container'>
-            <img src={thumb} alt="Playlist-Img"></img>
+            <img src={thumb || defaultThumbnail} alt="Playlist-Img"></img>
           </div>
           <Btn 
             BtnText="Upload Image"
