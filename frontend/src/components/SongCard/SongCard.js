@@ -1,6 +1,7 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import './SongCard.css'
 import defaultThumbnail from '../../Assets/DefaultThumbnail.jpg'
+
 
 const SongCard = ({ SongTitle, SongArtist, Thumbnail, selected, onToggle }) => {
     return (

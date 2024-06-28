@@ -99,7 +99,13 @@ const Main = () => {
         <Btn BtnText="Add Songs to a Playlist" BtnWidth="49%" onClickFunction={()=>handleOptionSelect(2)} />
         </div>
       </div>
-      <CreatePlaylist/>
+      {
+        option === 1 ? 
+        <CreatePlaylist/>
+        :
+        null
+      
+      }
     </div>
   )
 }
