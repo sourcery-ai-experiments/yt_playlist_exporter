@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import './Main.css'
 import { PlaylistLinkStatusContext } from '../../Context/PlaylistLinkStatus'
 import { SongsContext } from '../../Context/Songs'
@@ -14,6 +14,7 @@ const Main = () => {
   const { setIsPlaylistLinkSet, isPlaylistLinkSet, setIsPlaylistLinkValid, setPlaylistID, PlaylistID, setIdType,setMixLink } = useContext(PlaylistLinkStatusContext);
   const [playlistLink, setPlaylistLink] = useState('');
   const [option, setOption] = useState(null);
+  const createPlaylistRef = useRef(null);
 
   const handleOptionSelect = (opt)=>{
     setOption(opt);
@@ -21,6 +22,12 @@ const Main = () => {
   }
 
   const {playlistDetails} = useContext(SongsContext);
+
+  useEffect(() => {
+    if (option === 1 && createPlaylistRef.current) {
+      createPlaylistRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [option]);
 
   useEffect(() => {
     console.log("Video Titles Count ", playlistDetails.videoInfo.length); // Changed videoTitles to videoInfo
@@ -76,21 +83,15 @@ const Main = () => {
         </div>
       </div>
       {playlistDetails.videoInfo.length>0 ?
-        <PlaylistCard 
+        <>
+          <PlaylistCard 
         PlaylistName={playlistDetails.playlistName}
         PlaylistCreator={playlistDetails.creator}
         VidCount={playlistDetails.videoInfo.length} // Changed videoTitles to videoInfo
         DatePub={playlistDetails.datePublished}
         Thumbnail={playlistDetails.thumbnail}
         />
-        :
-        null
-      }
-      <div className='Connect-Section'>
-        <YoutubeBtn/>
-        <SpotBtn/>
-      </div> 
-      <div className='Option-Section'>
+        <div className='Option-Section'>
         <div className='Option-Section-Header'>
           <p>What do you wanna do?</p>
         </div>
@@ -99,9 +100,22 @@ const Main = () => {
         <Btn BtnText="Add Songs to a Playlist" BtnWidth="49%" onClickFunction={()=>handleOptionSelect(2)} />
         </div>
       </div>
+        </>
+        :
+        null
+      }
+      <div className='Connect-Section'>
+        <YoutubeBtn/>
+        <SpotBtn/>
+      </div> 
+      
       {
         option === 1 ? 
+        <>
         <CreatePlaylist/>
+        <div className='Empty' ref={createPlaylistRef}></div>
+        </>
+        
         :
         null
       

@@ -5,6 +5,8 @@
     background-image: url('../../Assets/Image.png');
     background-size: cover;
     background-position: center;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .Title{
@@ -95,4 +97,14 @@
   height: 60%;
   display: flex;
   justify-content: space-between;
+}
+
+.Main-container::-webkit-scrollbar {
+  width: 7px; /* width of the entire scrollbar */
+}
+
+.Empty{
+  height: 40%;
+  width: 100%;
+  background: none;
 }
