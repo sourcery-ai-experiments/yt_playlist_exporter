@@ -8,17 +8,25 @@ import InputBox from '../InputBox/InputBox'
 import YoutubeBtn from '../YoutubeBtn/YoutubeBtn'
 import SpotBtn from '../SpotifyBtn/SpotBtn'
 import CreatePlaylist from '../CreatePlaylist/CreatePlaylist'
+import { AuthContext } from '../../Context/AuthContext'
 
 
 const Main = () => {
   const { setIsPlaylistLinkSet, isPlaylistLinkSet, setIsPlaylistLinkValid, setPlaylistID, PlaylistID, setIdType,setMixLink } = useContext(PlaylistLinkStatusContext);
+  const {isYouTubeAuthenticated, isSpotifyAuthenticated} = useContext(AuthContext);
   const [playlistLink, setPlaylistLink] = useState('');
   const [option, setOption] = useState(null);
   const createPlaylistRef = useRef(null);
 
   const handleOptionSelect = (opt)=>{
-    setOption(opt);
+    if(isSpotifyAuthenticated){
+      setOption(opt);
     console.log("Option Selected ", opt);
+    }
+    else {
+      alert("Please Connect to Spotify First");
+    }
+    
   }
 
   const {playlistDetails} = useContext(SongsContext);
@@ -35,7 +43,8 @@ const Main = () => {
 
   //Send to Youtube API
   const handleBtnClick = () => {
-    const youtubePlaylistRegex = /^https?:\/\/(www\.)?youtube\.com\/(watch\?.*v=[\w-]+&list=|playlist\?list=)[\w-]+(&.*)?$/;
+    if(isYouTubeAuthenticated){
+      const youtubePlaylistRegex = /^https?:\/\/(www\.)?youtube\.com\/(watch\?.*v=[\w-]+&list=|playlist\?list=)[\w-]+(&.*)?$/;
     if (playlistLink !== '' && youtubePlaylistRegex.test(playlistLink)) {
       setIsPlaylistLinkValid(true);
       const link = new URL(playlistLink);
@@ -58,6 +67,11 @@ const Main = () => {
       setIsPlaylistLinkSet(false);
       setIsPlaylistLinkValid(false);
     }
+    }
+    else{
+      alert("Please Connect to Youtube First");
+    }
+    
   }
 
   useEffect(() => {
